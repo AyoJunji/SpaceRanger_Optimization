@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledProjectiles: []
-  objectToPool: {fileID: 0}
+  objectToPool: {fileID: 3165243832468080262, guid: 86a7c5510316ac04fbfcf2fbad02bbc5, type: 3}
   amountToPool: 10
 --- !u!1 &7759766516845211560
 GameObject:

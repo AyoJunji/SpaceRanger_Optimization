@@ -9,6 +9,7 @@ public class PlayerProjectile : MonoBehaviour
     Collider2D bulletColl;
 
     public float bulletSpeed = 15;
+    private float duration = 3f;
 
     void Start()
     {
@@ -16,6 +17,13 @@ public class PlayerProjectile : MonoBehaviour
         bulletRB = bulletObj.GetComponent<Rigidbody2D>();
         bulletColl = bulletObj.GetComponent<Collider2D>();
 
+        StartCoroutine(DelayedDeath(duration));
+    }
+
+    IEnumerator DelayedDeath(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        Destroy(gameObject);
     }
 
     void FixedUpdate()
