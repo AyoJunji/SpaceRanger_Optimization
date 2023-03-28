@@ -26,13 +26,17 @@ public class BossTimer : MonoBehaviour
                 timerDuration -= Time.deltaTime;
                 UpdateTimer(timerDuration);
             }
+            else
+            {
+                timerDuration = 0;
+                timerOn = false;
+            }
         }
         else
         {
-            bossText.transform.position = Vector3.Lerp(bossText.transform.position, bossText.transform.position - new Vector3(0,100,0), Time.deltaTime * 30);
-            timerDuration = 0;
-            timerOn = false;
+            bossText.rectTransform.position = Vector2.Lerp(bossText.rectTransform.position, bossText.rectTransform.position - new Vector3(0f,5f,0f), Time.deltaTime * 50);
         }
+        
     }
 
     void UpdateTimer(float currentTime)

@@ -751,7 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5908c59b0741148b0361b96496cf7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDuration: 20
+  timerDuration: 5
   timerOn: 0
   timerText: {fileID: 17910625}
   bossText: {fileID: 1790658954}
@@ -1392,6 +1392,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6772949847143723968, guid: 721cb48e847f7dc478c2d59c714dd557, type: 3}
+      propertyPath: m_Interpolate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6772949847143723971, guid: 721cb48e847f7dc478c2d59c714dd557, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1402,7 +1406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6772949847143723971, guid: 721cb48e847f7dc478c2d59c714dd557, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.94
+      value: -4.44
       objectReference: {fileID: 0}
     - target: {fileID: 6772949847143723971, guid: 721cb48e847f7dc478c2d59c714dd557, type: 3}
       propertyPath: m_LocalPosition.z
