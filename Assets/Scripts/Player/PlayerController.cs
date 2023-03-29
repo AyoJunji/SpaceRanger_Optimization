@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed;
-    private int bulletStorage;
+    private float moveSpeed = 2f;
     private int currentHealth;
     public int maxHealth;
 
@@ -16,13 +15,13 @@ public class PlayerController : MonoBehaviour
     GameObject playerObj;
     public GameObject projectile;
     Rigidbody2D playerRB;
-    Collider2D playerCollider;
 
+    float verticalDir;
+    float horizontalDir;
     void Start()
     {
         playerObj = this.gameObject;
         playerRB = playerObj.GetComponent<Rigidbody2D>();
-        playerCollider = playerObj.GetComponent<Collider2D>();
 
         currentHealth = maxHealth;
     }
@@ -30,26 +29,34 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        float verticalDir = Input.GetAxis("Vertical");
-        float horizontalDir = Input.GetAxis("Horizontal");
-
-        Vector3 moveVec = new Vector3(horizontalDir, verticalDir, 0);
-        moveVec = moveVec.normalized * moveSpeed * Time.deltaTime;
-        playerRB.MovePosition(playerRB.transform.position + moveVec);
+        verticalDir = Input.GetAxis("Vertical");
+        horizontalDir = Input.GetAxis("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            HandleShooting();
+            Instantiate(projectile, muzzlePoint.position, Quaternion.identity);
         }
     }
 
-    void HandleShooting()
+    private void FixedUpdate()
     {
-        if(bulletStorage <= 4)
+        playerRB.velocity = new Vector2(horizontalDir, verticalDir) * moveSpeed;
+        playerRB.velocity = Vector2.ClampMagnitude(playerRB.velocity, 12);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        Debug.Log(currentHealth);
+        if (currentHealth <= 0)
         {
-            Instantiate(projectile, muzzlePoint.position, Quaternion.identity);
-            ++bulletStorage;
+            HandleDeath();
         }
+    }
+
+    private void HandleDeath()
+    {
+        Destroy(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

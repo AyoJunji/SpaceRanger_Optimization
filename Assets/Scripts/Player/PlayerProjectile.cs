@@ -9,7 +9,8 @@ public class PlayerProjectile : MonoBehaviour
     Collider2D bulletColl;
 
     public float bulletSpeed = 15;
-    private float duration = 3f;
+    public float damage = 5f;
+    private float duration = 1.5f;
 
     void Start()
     {
@@ -33,6 +34,17 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(this);
+        if(collision.gameObject.tag == "Enemy") 
+        {
+            Destroy(gameObject);
+        }
+
+        else if (collision.gameObject.tag == "Boss")
+        {
+            Debug.Log("HIT");
+            Boss bossScript = collision.gameObject.GetComponent<Boss>();
+            bossScript.TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

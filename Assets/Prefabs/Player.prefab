@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6772949847143723969}
   - component: {fileID: 6772949847143723968}
   - component: {fileID: 6772949847143723972}
-  - component: {fileID: 2386377315876664598}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -132,10 +131,10 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 1
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6772949847143723972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,21 +151,6 @@ MonoBehaviour:
   maxHealth: 100
   muzzlePoint: {fileID: 42694471442291617}
   projectile: {fileID: 3165243832468080262, guid: 86a7c5510316ac04fbfcf2fbad02bbc5, type: 3}
---- !u!114 &2386377315876664598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6772949847143724031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e84ee76375172843910186d71ccf142, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledProjectiles: []
-  objectToPool: {fileID: 3165243832468080262, guid: 86a7c5510316ac04fbfcf2fbad02bbc5, type: 3}
-  amountToPool: 10
 --- !u!1 &7759766516845211560
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7759766516845211560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.505, z: 0.0052517653}
+  m_LocalPosition: {x: -0, y: 0.505, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

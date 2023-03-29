@@ -10,6 +10,7 @@ public class BossTimer : MonoBehaviour
     public bool timerOn = false;
     public Text timerText;
     public Text bossText;
+    public GameObject bossObj;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class BossTimer : MonoBehaviour
             }
             else
             {
+                StartCoroutine(DestroyText());
                 timerDuration = 0;
                 timerOn = false;
             }
@@ -37,6 +39,13 @@ public class BossTimer : MonoBehaviour
             bossText.rectTransform.position = Vector2.Lerp(bossText.rectTransform.position, bossText.rectTransform.position - new Vector3(0f,5f,0f), Time.deltaTime * 50);
         }
         
+    }
+
+    IEnumerator DestroyText()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(bossText);
+        Instantiate(bossObj, new Vector2(0f, 7.5f), Quaternion.identity);
     }
 
     void UpdateTimer(float currentTime)
