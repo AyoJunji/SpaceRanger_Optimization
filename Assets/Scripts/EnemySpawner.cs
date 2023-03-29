@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     public float chaserSpawnTimer = 3f;
     public float shooterSpawnTimer = 5f;
@@ -13,14 +12,12 @@ public class GameManager : MonoBehaviour
     public GameObject enemyShooter;
     public GameObject enemyBomber;
 
-    private void Awake()
+    private void Start()
     {
-        SpawnChaser(chaserSpawnTimer);
-        SpawnShooter(shooterSpawnTimer);
-        SpawnBomber(bomberSpawnTimer);
+        STARTSPAWNING();
     }
 
-    private void Start()
+    void STARTSPAWNING()
     {
         SpawnChaser(chaserSpawnTimer);
         SpawnShooter(shooterSpawnTimer);
