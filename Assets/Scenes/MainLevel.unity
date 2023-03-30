@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5908c59b0741148b0361b96496cf7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDuration: 10
+  timerDuration: 180
   timerText: {fileID: 17910625}
   bossText: {fileID: 1790658954}
   bossObj: {fileID: 5991957056594333678, guid: 5f6014b5cf9cc0d4c9e97c34074c15d0, type: 3}
