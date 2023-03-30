@@ -11,24 +11,24 @@ public class EnemyShooter : MonoBehaviour
     public Transform muzzlePoint;
 
     int speed;
-    float delay = 3f;
+    float delay = 1.5f;
 
     void Start()
     {
         speed = Random.Range(2, 10);
-        ShootProjectile(delay);
+        StartCoroutine(ShootProjectile(delay));
     }
 
     void Update()
     {
-        transform.position = new Vector3(-8 + Mathf.PingPong(Time.time * speed, 16), transform.position.y - .001f, transform.position.z);
+        transform.position = new Vector3(-8 + Mathf.PingPong(Time.time * speed, 16), transform.position.y - .0007f, transform.position.z);
     }
 
     IEnumerator ShootProjectile(float cooldown)
     {
         yield return new WaitForSeconds(cooldown);
         Instantiate(projectile, muzzlePoint.position, Quaternion.identity);
-        ShootProjectile(delay);
+        StartCoroutine(ShootProjectile(delay));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -52,7 +52,6 @@ public class EnemyShooter : MonoBehaviour
 
     void HandleDeath()
     {
-        //explosion.Play();
         StartCoroutine(DelayDeath(duration));
     }
 

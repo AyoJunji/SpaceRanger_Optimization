@@ -7,7 +7,7 @@ public class BossTimer : MonoBehaviour
 {
 
     public float timerDuration;
-    public bool timerOn = false;
+    public static bool timerOn = false;
     public Text timerText;
     public Text bossText;
     public GameObject bossObj;

@@ -6,9 +6,9 @@ using UnityEngine;
 public class EnemyChaser : MonoBehaviour
 {
     int damage = 1;
-    float duration = .5f;
-
+    float duration = .2f;
     int speed;
+    public GameObject deathFX;
     private void Start()
     {
         speed = Random.Range(2, 10);
@@ -39,13 +39,13 @@ public class EnemyChaser : MonoBehaviour
 
     void HandleDeath()
     {
-        //explosion.Play();
         StartCoroutine(DelayDeath(duration));
     }
 
     IEnumerator DelayDeath(float timer)
     {
         yield return new WaitForSeconds(timer);
+        Instantiate(deathFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }   

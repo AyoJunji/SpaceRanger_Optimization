@@ -1,23 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 2f;
     private int currentHealth;
-    public int maxHealth;
-
+    private int maxHealth = 5;
     public Transform muzzlePoint;
 
     [Header("Assignables")]
     GameObject playerObj;
     public GameObject projectile;
     Rigidbody2D playerRB;
+    public Image Health1, Health2, Health3, Health4;
 
     float verticalDir;
     float horizontalDir;
+
     void Start()
     {
         playerObj = this.gameObject;
@@ -47,20 +50,27 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log(currentHealth);
-        if (currentHealth <= 0)
+        switch (currentHealth)
         {
-            HandleDeath();
+            case 0:
+                SceneManager.LoadScene("TitleScreen");
+                break;
+            case 1:
+                Destroy(Health1);
+                break;
+            case 2:
+                Destroy(Health2);
+                break;
+            case 3:
+                Destroy(Health3);
+                break;
+            case 4:
+                Destroy(Health4);
+                break;
+            default:
+                SceneManager.LoadScene("TitleScreen");
+                break;
         }
-    }
 
-    private void HandleDeath()
-    {
-        Destroy(this);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        currentHealth -= 1;
     }
 }

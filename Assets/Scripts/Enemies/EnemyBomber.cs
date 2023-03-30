@@ -6,7 +6,9 @@ public class EnemyBomber : MonoBehaviour
 {
     int damage = 1;
     public GameObject projectile;
+    public GameObject projectile2;
     public Transform muzzlePoint;
+    public Transform muzzlePoint2;
 
     float duration = .5f;
     float delay = 3f;
@@ -16,19 +18,20 @@ public class EnemyBomber : MonoBehaviour
     {
         speed = Random.Range(2, 10);
 
-        ShootProjectile(delay);
+        StartCoroutine(ShootProjectile(delay));
     }
 
     void Update()
     {
-        transform.position = new Vector3(-8 + Mathf.PingPong(Time.time * speed, 16), transform.position.y - .001f, transform.position.z);
+        transform.position = new Vector3(-8 + Mathf.PingPong(Time.time * speed, 16), transform.position.y - .0005f, transform.position.z);
     }
 
     IEnumerator ShootProjectile(float cooldown)
     {
         yield return new WaitForSeconds(cooldown);
         Instantiate(projectile, muzzlePoint.position, Quaternion.identity);
-        ShootProjectile(delay);
+        Instantiate(projectile2, muzzlePoint2.position, Quaternion.identity);
+        StartCoroutine(ShootProjectile(delay));
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -51,7 +54,6 @@ public class EnemyBomber : MonoBehaviour
 
     void HandleDeath()
     {
-        //explosion.Play();
         StartCoroutine(DelayDeath(duration));
     }
 

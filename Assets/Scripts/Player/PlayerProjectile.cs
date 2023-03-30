@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
 {
     GameObject bulletObj;
     Rigidbody2D bulletRB;
-    Collider2D bulletColl;
+    public GameObject impactFX;
 
     public float bulletSpeed = 15;
-    public float damage = 5f;
+    public float damage = 1f;
     private float duration = 1.5f;
 
     void Start()
     {
         bulletObj = this.gameObject;
         bulletRB = bulletObj.GetComponent<Rigidbody2D>();
-        bulletColl = bulletObj.GetComponent<Collider2D>();
 
         StartCoroutine(DelayedDeath(duration));
     }
@@ -36,12 +36,13 @@ public class PlayerProjectile : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy") 
         {
+            Instantiate(impactFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
         else if (collision.gameObject.tag == "Boss")
         {
-            Debug.Log("HIT");
+            Instantiate(impactFX, transform.position, Quaternion.identity);
             Boss bossScript = collision.gameObject.GetComponent<Boss>();
             bossScript.TakeDamage(damage);
             Destroy(gameObject);
